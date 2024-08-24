@@ -1,0 +1,64 @@
+
+l.container{
+	width: 100%; /*define a largura do container*/
+	padding-top: 100px; /*define o espaçamento interno supeior*/
+}
+
+.coluna{
+	width: 40%;
+	height: 500px;
+	background: #ccc;
+	margin: 0 auto; /*centraliza a div com classe .coluna*/
+	padding-top: 20px;/*espaçamento interno de 20px*/
+}
+
+.coluna label{
+	display: block; /*altera o display da tag label*/
+	margin:10px 10%;/*define margem sup e inf para 10% e dir e esq automatica*/
+}
+
+.coluna button{
+	display: block;
+	margin:10px 10%;
+	width: 80%;
+	background: #000;
+	color: #FFF;
+	font-size: 20px;
+} 
+
+.coluna input{
+	width: 80%;
+	margin-left: 10%;
+	height: 30px;
+	font-size: 25px;
+	border-radius: 20px;/*usada para arredondar as margens*/
+}
+
+.anteriores{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.anteriores div{
+    background: #ccc;
+    margin: 20px;
+    padding-top: 5;
+    border-radius: 5px;
+}
+
+.anteriores h3{
+    font-weight: bold; /*texto em negrito*/
+    font-size: 16px;
+}
+
+.anteriores p{
+    font-size: 17px;
+}
+
+.anteriores strong{
+    font-weight: bold;
+}
+
+.anteriores h4{
+   font-size: 14px;
+}
