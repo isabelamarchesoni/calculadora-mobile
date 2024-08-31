@@ -1,72 +1,93 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  
-  <script src="cordova.js"></script>
-  <script src="components/loader.js"></script>
-  <script src="components/acao.js"></script>
+/*Criando variavel para receber os atributos do elemento com id*/
+/*Somar*/
+let somar = document.getElementById("somar");
+let subtrair = document.getElementById("subtrair");
+let multiplicar = document.getElementById("multiplicar");
+let dividir = document.getElementById("dividir");
 
-  <link rel="stylesheet" href="components/loader.css">
-  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
+/*Pegando atributos do elemento com id valor1*/
+let valor1 = document.getElementById("valor1")
 
-</head>
-   <div class="container">
-        <div class="coluna">
-            <label>Calculadora</label>
-            <label>Digite um valor::</label>
-            <input type="number" name="valor1" id="valor1">
+let valor2 = document.getElementById("valor2")
 
-            <label>Digite outro valor:</label>
-            <input type="number" name="valor2" id="valor2">
+let cont1 = 0;
+let cont2 = 0;
+let cont3 = 0;
+let cont4 = 0;
 
-            <button class="btn" id="somar">Somar</button>
-            <button class="btn" id="subtrair">Subtrair</button>
-            <button class="btn" id="multiplicar">Multiplicar</button>
-            <button class="btn" id="dividir">Dividir</button>
+//adiciona o evento de click no elemento com id somar 
+somar.addEventListener("click", function(){
+    let resultado = parseFloat(valor1.value) + parseFloat(valor2.value);
+    /*ParseInt se refere a valores inteiros*/
+    /*ParseFloat se refere a valores com casas decimais(numeros com virgula)*/
 
-            <label>Resultado: </label>
-            <Input type="text" name="resultado" id="resultado" readonly>
-        </div>
+    document.getElementById("resultado").value = resultado;
+    
+    mudarCor(resultado);   
+    /*textContent altera de formulario para numero*/
+    document.getElementById("usoma").textContent = resultado;
 
-    <div class="anteriores">
+    /*Usando innerHTML para inserir tags dentro da div somaanterior*/
+    document.getElementById("somaanterior").innerHTML += "<p class='itemsoma'>"+resultado+"<p>";
 
-        <div>
-          <h3>Histórico de Soma</h3>
-          <p>Último resultado: <strong id="usoma"></strong></p>
-          <h4>Somas anteriores:</h4>
-          <div id="somaanterior"></div>
-          <div class="resultado"><p>Soma total:<strong id="resultSomaTotal"></strong></p></div>
-        </div>
+    let itemsoma = document.getElementsByClassName("itemsoma")
+    //array vetor
+    let somatotal = 0;
+    for(let i = 0; i < itemsoma.length; i++){
+        somatotal = somatotal+ parseFloat(itemsoma[i].textContent)
+    }
+    document.getElementById("resultSomaTotal").textContent = somatotal;
+});     
 
-        <div>
-            <h3>Histórico de Subtração</h3>
-            <p>Último resultado: <strong id="usub"></strong></p>
-            <h4>Subtrações anteriores:</h4>
-            <div id="subanterior"></div>
-            <div class="resultado"><p>Subtrações totais:<strong id="resultSubTotal"></strong></p></div>
-          </div>
+subtrair.addEventListener("click", function(){
+    let resultado = parseFloat(valor1.value) - parseFloat(valor2.value);
 
-          <div>
-            <h3>Histórico de Multiplicação</h3>
-            <p>Último resultado: <strong id="umult"></strong></p>
-            <h4>Multiplicações anteriores:</h4>
-            <div id="multanterior"></div>
-            <div class="resultado"><p>Multiplicações totais:<strong id="resultMultTotal"></strong></p></div>
-          </div>
+    document.getElementById("resultado").value = resultado;
+    
+    /*Chamada de Função*/
+    mudarCor(resultado);
 
-          <div>
-            <h3>Histórico de Divisão</h3>
-            <p>Último resultado: <strong id="udiv"></strong></p>
-            <h4>Divisões anteriores:</h4>
-            <div id="divanterior"></div>
-            <div class="resultado"><p>Divisões totais:<strong id="resultDivTotal"></strong></p></div>
-          </div>
-    </div>
+    document.getElementById("usub").textContent = resultado;
 
-</body>
-<script type="text/javascript" src="jvsc/comando.js" ></script>
-</html>
+    document.getElementById("subanterior").innerHTML += "<p>"+resultado+"<p>";
+
+    resultSubTotal.innerHTML = ++cont1
+}); 
+
+multiplicar.addEventListener("click", function(){
+    let resultado = parseFloat(valor1.value) * parseFloat(valor2.value);
+
+    document.getElementById("resultado").value = resultado;
+
+    mudarCor(resultado);
+
+    document.getElementById("umult").textContent = resultado;
+
+    document.getElementById("multanterior").innerHTML += "<p>"+resultado+"<p>";
+
+    resultMultTotal.innerHTML = ++cont2
+}); 
+
+dividir.addEventListener("click", function(){   
+    let resultado = parseFloat(valor1.value) / parseFloat(valor2.value);
+
+    document.getElementById("resultado").value = resultado;
+
+    mudarCor(resultado);
+
+    document.getElementById("udiv").textContent = resultado;
+
+    document.getElementById("divanterior").innerHTML += "<p>"+resultado+"<p>";
+
+    resultDivTotal.innerHTML = ++cont3
+}); 
+
+/*Criação de função em JavaScript*/
+function mudarCor(result){
+
+    if(result < 0){
+        document.getElementById("resultado").style.color = "#f00";
+    }else{
+        document.getElementById("resultado").style.color = "#00f";
+    }
+}
